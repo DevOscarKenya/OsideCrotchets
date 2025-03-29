@@ -1,0 +1,55 @@
+:where([class^="ri-"])::before { content: "\f3c2"; }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .designer-only {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .designer-mode .designer-only {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .product-grid > div:hover .designer-only {
+            opacity: 1;
+        }
+        .testimonial-slider {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+        .testimonial-slide {
+            scroll-snap-align: start;
+        }
+        .upload-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .upload-modal.active {
+            display: flex;
+        }
+        .designer-only {
+          display: none;
+      }
+      
+      .is-designer .designer-only {
+          display: block;
+          opacity: 0;
+          transition: opacity 0.3s;
+      }
+      
+      .bg-white:hover .designer-only {
+          opacity: 1;
+      }
+      /* hide the comment section */
+      section.py-16:has(#commentForm) {
+        display: none !important;
+      }
+       

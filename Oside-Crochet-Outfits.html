@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oside Crotchets - Handcrafted Crochet Fashion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="./assets/favicon2.jpg" type="x-icon">
+    
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#996515',
+                        secondary: '#D4AF37'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white">
+    <header class="fixed w-full top-0 bg-white shadow-md z-50">
+        <div class="container mx-auto px-4">
+            <nav class="flex items-center justify-between h-20">
+                <a href="#" class="font-['Pacifico'] text-primary text-3xl">Oside Crotchets</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-primary">Home</a>
+                    <a href="#products" class="text-gray-700 hover:text-primary">Products</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary">About</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="uploadBtn" class="bg-primary text-white px-4 py-2 !rounded-button flex items-center space-x-2 hover:bg-opacity-90">
+                        <i class="ri-upload-2-line"></i>
+                        <span>Add Product</span>
+                    </button>
+                    <div class="relative">
+                        <button class="text-gray-700 hover:text-primary" onclick="toggleCart()">
+                            <i class="ri-shopping-cart-2-line text-2xl"></i>
+                            <span id="cartCounter" class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                        </button>
+                        <div id="cartDropdown" class="hidden absolute top-full right-0 mt-2 w-96 bg-white rounded-lg shadow-lg p-4 z-50">
+                            <div id="cartItems" class="max-h-96 overflow-y-auto">
+                                <div class="space-y-4">
+                                    <!-- Cart items will be dynamically inserted here -->
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-200">
+                                <div class="flex justify-between mb-4">
+                                    <span class="font-semibold">Subtotal:</span>
+                                    <span id="cartSubtotal" class="font-semibold text-primary">KSH 0</span>
+                                </div>
+                                <div class="flex gap-4">
+                                    <a href="./Crochet-Cart-Details.html"  class="flex-1">
+                                        <button class="w-full px-4 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors">View Cart</button>
+                                    </a>
+                                    <button onclick="checkout()" class="flex-1 px-4 py-2 bg-primary text-white !rounded-button hover:bg-opacity-90">Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="cartNotification" class="hidden absolute top-full right-0 mt-2 w-72 bg-white rounded-lg shadow-lg p-4 z-50">
+                            <div class="flex items-center gap-4">
+                                <img id="notificationImage" class="w-16 h-16 object-cover rounded" src="" alt="">
+                                <div class="flex-1">
+                                    <p id="notificationName" class="font-semibold"></p>
+                                    <p id="notificationPrice" class="text-primary"></p>
+                                </div>
+                            </div>
+                            <p class="text-green-600 text-sm mt-2">Item added to cart</p>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="mt-20">
+        <section class="relative h-[600px] bg-cover bg-center" style="background-image: url('https://public.readdy.ai/ai/img_res/326fab6d9c3fb33453b194988e5a346a.jpg')">
+            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <div class="container mx-auto px-4 h-full flex items-center">
+                <div class="relative text-white max-w-2xl">
+                    <h1 class="text-5xl font-bold mb-4">Handcrafted Crochet Fashion by Shaldrine Oside</h1>
+                    <p class="text-xl mb-8">From Kakamega, Kenya to Your Wardrobe</p>
+                    <button class="bg-primary text-white px-8 py-3 !rounded-button text-lg hover:bg-opacity-90">
+                        Shop Now
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="bg-primary/5 py-4">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center justify-center space-x-4">
+                    <i class="ri-truck-line text-2xl text-primary"></i>
+                    <p class="text-lg">Free Delivery Across Kenya on Orders Above KSH 800</p>
+                </div>
+            </div>
+        </section>
+        <section class="py-16 bg-primary/5">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl font-bold mb-4">Meet Shaldrine Oside</h2>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Shaldrine Oside is a talented crochet designer from Kakamega, Kenya, who has been crafting 
+                            beautiful handmade pieces for over 10 years. Her passion for crocheting has always been self driven and motivated 
+                            , and she has since developed her own unique style that combines traditional techniques
+                            with modern designs.
+                        </p>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Each piece is carefully crafted with attention to detail and quality, ensuring that every customer
+                             receives a unique and beautiful item that will last for years to come. Shaldrine's work has been featured in 
+                             local fashion shows and has gained recognition for its exceptional craftsmanship.
+                        </p>
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-semibold">Connect With Me</h3>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="https://wa.me/254712345678" target="_blank" class="bg-[#25D366] text-white px-6 py-2 !rounded-button hover:bg-opacity-90 flex items-center whitespace-nowrap">
+                                    <i class="ri-whatsapp-fill mr-2 text-xl"></i>
+                                    WhatsApp Chat
+                                </a>
+                                <a href="https://instagram.com/osidecrotchets" target="_blank" class="bg-[#E4405F] text-white px-6 py-2 !rounded-button hover:bg-opacity-90 flex items-center whitespace-nowrap">
+                                    <i class="ri-instagram-fill mr-2 text-xl"></i>
+                                    Follow on Instagram
+                                </a>
+                                <a href="https://facebook.com/osidecrotchets" target="_blank" class="bg-[#1877F2] text-white px-6 py-2 !rounded-button hover:bg-opacity-90 flex items-center whitespace-nowrap">
+                                    <i class="ri-facebook-fill mr-2 text-xl"></i>
+                                    Follow on Facebook
+                                </a>
+                            </div>
+                            <div class="mt-6">
+                                <button class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90 flex items-center">
+                                    <i class="ri-message-3-line mr-2"></i>
+                                    Send Direct Message
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="./assets/827e60cfeeae47c190fc0c7ddf3b1077.jpg" class="rounded-lg shadow-lg w-full max-w-md mx-auto">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="products" class="py-16">
+          <div class="container mx-auto px-4">
+              <h2 class="text-3xl font-bold mb-8 text-center">Our Collections</h2>
+              <div class="flex flex-wrap gap-4 mb-8 justify-center">
+                <div class="flex flex-wrap gap-4 mb-8 justify-center">
+                  <button onclick="filterProducts('all')" class="px-4 py-2 !rounded-button bg-primary text-white">All</button>
+                  <button onclick="filterProducts('dresses')" class="px-4 py-2 !rounded-button bg-gray-200 hover:bg-gray-300">Dresses</button>
+                  <button onclick="filterProducts('sweaters')" class="px-4 py-2 !rounded-button bg-gray-200 hover:bg-gray-300">Sweaters</button>
+                  <button onclick="filterProducts('hats')" class="px-4 py-2 !rounded-button bg-gray-200 hover:bg-gray-300">Hats</button>
+                  <button onclick="filterProducts('scarves')" class="px-4 py-2 !rounded-button bg-gray-200 hover:bg-gray-300">Scarfs</button>
+                  <button onclick="filterProducts('handbags')" class="px-4 py-2 !rounded-button bg-gray-200 hover:bg-gray-300">Handbags</button>
+              </div>
+              </div>
+              <div class="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <!-- Summer Breeze Dress -->
+                  <div class="bg-white rounded-lg shadow-md overflow-hidden relative cursor-pointer" onclick="showProductDetails(this)">
+                      <button onclick="deleteProduct(this)" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 opacity-0 transition-opacity duration-300 hover:bg-red-600 designer-only">
+                          <i class="ri-delete-bin-line"></i>
+                      </button>
+                      <img src="https://preview.redd.it/summer-dress-v0-d3qu6h9o24ad1.jpg?width=640&crop=smart&auto=webp&s=5933146a790fe24ffc49cc2ee7d30a10d175a7a1" alt="Summer Breeze Dress" class="w-full h-80 object-cover">
+                      <div class="p-4">
+                          <h3 class="text-lg font-semibold">Summer Breeze Dress</h3>
+                          <p class="text-gray-600 mb-4">KSH 4,500</p>
+                          <button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90" onclick="addToCart(event, this)">
+                              Add to Cart
+                          </button>
+                      </div>
+                  </div>
+      
+                  <!-- Boho Chic Top -->
+                  <div class="bg-white rounded-lg shadow-md overflow-hidden relative cursor-pointer" onclick="showProductDetails(this)">
+                      <img src="https://by-katerina.com/wp-content/uploads/2018/05/20180511_135758-600x487.jpg" alt="Boho Chic Top" class="w-full h-80 object-cover">
+                      <div class="p-4">
+                          <h3 class="text-lg font-semibold">Boho Chic Top</h3>
+                          <p class="text-gray-600 mb-4">KSH 2,800</p>
+                          <button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90" onclick="addToCart(event, this)">
+                              Add to Cart
+                          </button>
+                      </div>
+                  </div>
+      
+                  <!-- Cozy Winter Sweater -->
+                  <div class="bg-white rounded-lg shadow-md overflow-hidden relative cursor-pointer" onclick="showProductDetails(this)">
+                      <img src="https://i.ibb.co/0jQH8Pb/sweater.jpg" alt="Cozy Winter Sweater" class="w-full h-80 object-cover">
+                      <div class="p-4">
+                          <h3 class="text-lg font-semibold">Cozy Winter Sweater</h3>
+                          <p class="text-gray-600 mb-4">KSH 3,200</p>
+                          <button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90" onclick="addToCart(event, this)">
+                              Add to Cart
+                          </button>
+                      </div>
+                  </div>
+      
+                  <!-- Sunflower Hat -->
+                  <div class="bg-white rounded-lg shadow-md overflow-hidden relative cursor-pointer" onclick="showProductDetails(this)">
+                      <img src="https://i.ibb.co/7Y3d2L0/hat.jpg" alt="Sunflower Hat" class="w-full h-80 object-cover">
+                      <div class="p-4">
+                          <h3 class="text-lg font-semibold">Sunflower Hat</h3>
+                          <p class="text-gray-600 mb-4">KSH 1,800</p>
+                          <button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90" onclick="addToCart(event, this)">
+                              Add to Cart
+                          </button>
+                      </div>
+                  </div>
+      
+                  <!-- Autumn Scarf -->
+                  <div class="bg-white rounded-lg shadow-md overflow-hidden relative cursor-pointer" onclick="showProductDetails(this)">
+                      <img src="./assets/scarf.jpg" alt="Autumn Scarf" class="w-full h-80 object-cover">
+                      <div class="p-4">
+                          <h3 class="text-lg font-semibold">Autumn Scarf</h3>
+                          <p class="text-gray-600 mb-4">KSH 1,500</p>
+                          <button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90" onclick="addToCart(event, this)">
+                              Add to Cart
+                          </button>
+                      </div>
+                  </div>
+      
+                  <!-- Elegant Handbag -->
+                  <div class="bg-white rounded-lg shadow-md overflow-hidden relative cursor-pointer" onclick="showProductDetails(this)">
+                      <img src="https://i.ibb.co/4W2yXzJ/handbag.jpg" alt="Elegant Handbag" class="w-full h-80 object-cover">
+                      <div class="p-4">
+                          <h3 class="text-lg font-semibold">Elegant Handbag</h3>
+                          <p class="text-gray-600 mb-4">KSH 3,500</p>
+                          <button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90" onclick="addToCart(event, this)">
+                              Add to Cart
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+                <section class="py-16 bg-primary/5">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8 text-center">What Our Customers Say</h2>
+                <div class="testimonial-slider flex overflow-x-auto pb-8">
+                    <div class="testimonial-slide min-w-[300px] md:min-w-[400px] bg-white p-6 rounded-lg shadow-md mx-4">
+                        <div class="flex items-center mb-4">
+                            <img src="https://public.readdy.ai/ai/img_res/f4c9c24cbf285742471d42a3d3f91cb1.jpg" alt="Customer" class="w-12 h-12 rounded-full object-cover">
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Sarah Mwangi</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">"The quality of Shaldrine's crochet work is exceptional. I received so many compliments on my dress!"</p>
+                    </div>
+                    <div class="testimonial-slide min-w-[300px] md:min-w-[400px] bg-white p-6 rounded-lg shadow-md mx-4">
+                        <div class="flex items-center mb-4">
+                            <img src="https://public.readdy.ai/ai/img_res/a5b3f7017fca3510811d84760fb1cb5c.jpg" alt="Customer" class="w-12 h-12 rounded-full object-cover">
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Lucy Adhiambo</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">"Beautiful designs and excellent customer service. The free delivery was a bonus!"</p>
+                    </div>
+                    <div class="testimonial-slide min-w-[300px] md:min-w-[400px] bg-white p-6 rounded-lg shadow-md mx-4">
+                        <div class="flex items-center mb-4">
+                            <img src="https://public.readdy.ai/ai/img_res/dcda3a344149c3f0915ef0fd121f50d4.jpg" alt="Customer" class="w-12 h-12 rounded-full object-cover">
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Faith Wanjiru</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">"I absolutely love my new crochet top! The attention to detail is amazing and the fit is perfect. Will definitely be ordering more!"</p>
+                    </div>
+                    <div class="testimonial-slide min-w-[300px] md:min-w-[400px] bg-white p-6 rounded-lg shadow-md mx-4">
+                        <div class="flex items-center mb-4">
+                            <img src="https://public.readdy.ai/ai/img_res/7c8a9222ca88eaa6352e5f3ada8f9c0b.jpg" alt="Customer" class="w-12 h-12 rounded-full object-cover">
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Grace Otieno</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">"Shaldrine's work is truly unique. The scarf I ordered is not only beautiful but also incredibly warm and comfortable. Highly recommended!"</p>
+                    </div>
+                </div>
+                <div class="mt-12 max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-semibold mb-6 text-center">Share Your Experience</h3>
+                    <form id="testimonialForm" class="space-y-6 bg-white p-6 rounded-lg shadow-md">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Your Name</label>
+                            <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Your Photo (Optional)</label>
+                            <input type="file" accept="image/*" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Your Rating</label>
+                            <div class="flex space-x-2">
+                                <button type="button" class="rating-star text-gray-400 hover:text-yellow-400">
+                                    <i class="ri-star-line text-2xl"></i>
+                                </button>
+                                <button type="button" class="rating-star text-gray-400 hover:text-yellow-400">
+                                    <i class="ri-star-line text-2xl"></i>
+                                </button>
+                                <button type="button" class="rating-star text-gray-400 hover:text-yellow-400">
+                                    <i class="ri-star-line text-2xl"></i>
+                                </button>
+                                <button type="button" class="rating-star text-gray-400 hover:text-yellow-400">
+                                    <i class="ri-star-line text-2xl"></i>
+                                </button>
+                                <button type="button" class="rating-star text-gray-400 hover:text-yellow-400">
+                                    <i class="ri-star-line text-2xl"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Your Testimonial</label>
+                            <textarea class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90">
+                            Submit Testimonial
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8 text-center">Leave a Comment</h2>
+                <div class="max-w-2xl mx-auto">
+                    <form id="commentForm" class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Comment</label>
+                            <textarea class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" rows="4" required></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Rating</label>
+                            <div class="flex space-x-2">
+                                <i class="ri-star-line text-2xl cursor-pointer text-gray-400 hover:text-yellow-400"></i>
+                                <i class="ri-star-line text-2xl cursor-pointer text-gray-400 hover:text-yellow-400"></i>
+                                <i class="ri-star-line text-2xl cursor-pointer text-gray-400 hover:text-yellow-400"></i>
+                                <i class="ri-star-line text-2xl cursor-pointer text-gray-400 hover:text-yellow-400"></i>
+                                <i class="ri-star-line text-2xl cursor-pointer text-gray-400 hover:text-yellow-400"></i>
+                            </div>
+                        </div>
+                        <button type="submit" class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90">
+                            Submit Comment
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-['Pacifico'] text-2xl mb-4">Oside Crotchets</h3>
+                    <p class="text-gray-400">Handcrafted with love in Kakamega, Kenya</p>
+                    <p class="text-gray-400">Thank You for Patronizing!</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Products</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="ri-map-pin-line mr-2"></i> Kakamega, Kenya</li>
+                        <li class="flex items-center"><i class="ri-phone-line mr-2"></i> +254 712 345 678</li>
+                        <li class="flex items-center"><i class="ri-mail-line mr-2"></i> info@osidecrotchets.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Newsletter</h4>
+                    <form class="space-y-4">
+                        <input type="email" placeholder="Your email" class="w-full px-4 py-2 rounded-lg bg-gray-800 border-none text-white" required>
+                        <button type="submit" class="bg-primary text-white px-6 py-2 !rounded-button w-full hover:bg-opacity-90">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Oside Crotchets. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <div id="loginModal" class="upload-modal items-center justify-center">
+        <div class="bg-white p-6 rounded-lg w-full max-w-md mx-4 relative">
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" onclick="closeLoginModal()">
+                <i class="ri-close-line text-2xl"></i>
+            </button>
+            <h3 class="text-2xl font-semibold mb-4">Designer Login</h3>
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 mb-2">Username</label>
+                    <input type="text" id="username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Password</label>
+                    <input type="password" id="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                </div>
+                <p id="loginError" class="hidden text-red-500 text-sm"></p>
+                <button type="submit" class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90">
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+    <div id="uploadModal" class="upload-modal items-center justify-center">
+        <div class="bg-white p-6 rounded-lg w-full max-w-md mx-4 relative">
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" onclick="closeUploadModal()">
+                <i class="ri-close-line text-2xl"></i>
+            </button>
+            <h3 class="text-2xl font-semibold mb-4">Upload Product</h3>
+            <form id="uploadForm" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 mb-2">Product Name</label>
+                    <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Price (KSH)</label>
+                    <input type="number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Category</label>
+                    <select class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                         <option value="">Select category</option>
+    <option value="dresses">Dresses</option>
+    <option value="sweaters">Sweaters</option>
+    <option value="hats">Hats</option>
+    <option value="scarves">Scarfs</option>
+    <option value="handbags">Handbags</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Product Image</label>
+                    <div id="dropZone" class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-primary relative">
+                        <div id="uploadContent">
+                            <i class="ri-upload-2-line text-4xl text-gray-400"></i>
+                            <p class="mt-2 text-sm text-gray-500">Click to upload or drag and drop</p>
+                            <p class="text-xs text-gray-400 mt-1">Accepted formats: JPG, PNG, WEBP (Max 5MB)</p>
+                            <input type="file" id="fileInput" class="hidden" accept=".jpg,.jpeg,.png,.webp" required>
+                        </div>
+                        <div id="previewContainer" class="hidden">
+                            <img id="imagePreview" class="max-h-48 mx-auto rounded-lg" alt="Preview">
+                            <button type="button" id="removeImage" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600">
+                                <i class="ri-close-line"></i>
+                            </button>
+                        </div>
+                        <div id="progressContainer" class="hidden w-full mt-4">
+                            <div class="h-2 bg-gray-200 rounded-full">
+                                <div id="progressBar" class="h-2 bg-primary rounded-full transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                            <p id="progressText" class="text-xs text-gray-500 mt-1">0%</p>
+                        </div>
+                        <p id="errorMessage" class="hidden text-red-500 text-sm mt-2"></p>
+                    </div>
+                </div>
+                
+                <button type="submit" class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90">
+                    Upload Product
+                </button>
+            </form>
+        </div>
+    </div>
+    <div id="successModal" class="upload-modal items-center justify-center">
+        <div class="bg-white p-8 rounded-lg flex flex-col items-center">
+            <div class="w-16 h-16 flex items-center justify-center rounded-full bg-green-100 mb-4">
+                <i class="ri-checkbox-circle-line text-4xl text-green-500"></i>
+            </div>
+            <p class="text-xl font-semibold text-gray-800">Product uploaded successfully</p>
+        </div>
+    </div>
+    <div id="productDetailsModal" class="upload-modal items-center justify-center">
+        <div class="bg-white p-6 rounded-lg w-full max-w-4xl mx-4 relative">
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" onclick="closeProductDetails()">
+                <i class="ri-close-line text-2xl"></i>
+            </button>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2 space-y-4">
+                    <img id="modalProductImage" class="w-full h-[500px] object-cover rounded-lg" src="" alt="">
+                    <div class="grid grid-cols-4 gap-4">
+                        <img class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-75 border-2 border-primary" src="" alt="" onclick="updateMainImage(this.src)">
+                        <img class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-75" src="" alt="" onclick="updateMainImage(this.src)">
+                        <img class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-75" src="" alt="" onclick="updateMainImage(this.src)">
+                        <img class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-75" src="" alt="" onclick="updateMainImage(this.src)">
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <h2 id="modalProductName" class="text-3xl font-semibold mb-4"></h2>
+                    <p id="modalProductPrice" class="text-2xl text-primary font-semibold mb-6"></p>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Description</h3>
+                            <p id="modalProductDescription" class="text-gray-600"></p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Features</h3>
+                            <ul id="modalProductFeatures" class="list-disc list-inside text-gray-600 space-y-2">
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Size Guide</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <button class="border border-gray-300 py-2 !rounded-button hover:border-primary hover:text-primary">S</button>
+                                <button class="border border-gray-300 py-2 !rounded-button hover:border-primary hover:text-primary">M</button>
+                                <button class="border border-gray-300 py-2 !rounded-button hover:border-primary hover:text-primary">L</button>
+                                <button class="border border-gray-300 py-2 !rounded-button hover:border-primary hover:text-primary">XL</button>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="flex items-center border rounded-button">
+                                <button class="px-4 py-2 text-gray-600 hover:text-primary" onclick="updateQuantity(-1)">-</button>
+                                <input type="text" id="quantity" class="w-16 text-center border-none" value="1" readonly>
+                                <button class="px-4 py-2 text-gray-600 hover:text-primary" onclick="updateQuantity(1)">+</button>
+                            </div>
+                            <button class="flex-1 bg-primary text-white py-2 !rounded-button hover:bg-opacity-90">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <script src="mainscript.js"></script>
+    
+</body>
+</html>
